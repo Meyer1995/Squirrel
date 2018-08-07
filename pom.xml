@@ -42,11 +42,6 @@
         </dependency>
 
 		<dependency>
-    		<groupId>net.rootdev</groupId>
-    		<artifactId>java-rdfa</artifactId>
-    		<version>0.4.2</version>
-		</dependency>
-		<dependency>
     		<groupId>com.github.mautini</groupId>
     		<artifactId>schemaorg-java</artifactId>
     		<version>1.0.1</version>
@@ -255,28 +250,6 @@
 
         <!-- ~~~~~~~~~~~~~~~~~~~ Logging ~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- slf4j: Logging API -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-version}</version>
-        </dependency>
-        <!-- log4j binding -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>apache-log4j-extras</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <!-- make Logging with java.util.Logging possible -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j-version}</version>
-        </dependency>
         <!-- ~~~~~~~~~~~~~~~~~~~ End Logging ~~~~~~~~~~~~~~~~~~~~~~ -->
     </dependencies>
 

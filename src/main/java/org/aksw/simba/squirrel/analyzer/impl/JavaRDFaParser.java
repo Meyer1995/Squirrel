@@ -9,8 +9,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
+
+import javax.xml.bind.JAXB;
 
 import org.aksw.simba.squirrel.analyzer.Analyzer;
 import org.aksw.simba.squirrel.data.uri.CrawleableUri;
@@ -23,11 +26,13 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.xerces.jaxp.JAXPConstants;
 import org.hamcrest.core.Is;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import ch.qos.cal10n.util.Parser;
 import net.rootdev.javardfa.ParserFactory;
 import net.rootdev.javardfa.ParserFactory.Format;
 import net.rootdev.javardfa.jena.JenaStatementSink;
@@ -38,22 +43,41 @@ public class JavaRDFaParser implements Analyzer {
 
 	@Override
 	public Iterator<byte[]> analyze(CrawleableUri curi, File data, Sink sink) {
-//		Model model = ModelFactory.createDefaultModel();
-//		try {
-//			String hf = "0001.html";
-//			Model m = ModelFactory.createDefaultModel();
-//	        StatementSink statesink = new JenaStatementSink(m);
-//	        XMLReader parser = ParserFactory.createReaderForFormat(statesink, Format.XHTML, Setting.OnePointOne);
-//	        try {
-//				parser.parse(hf);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		} catch (SAXException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			Model m = ModelFactory.createDefaultModel();
+			
+	        StatementSink statesink = new org.aksw.simba.squirrel.analyzer.impl.JenaStatementSink(m);
+	        //statesink.setBase(curi.getUri().toString());
+	        XMLReader parser = ParserFactory.createReaderForFormat(statesink, Format.XHTML, Setting.OnePointOne);
+	        //parser.setProperty(JAXPConstants.JAXP_SCHEMA_SOURCE, curi.getUri().toString());
+	        try {
+				parser.parse(data.getAbsolutePath());
+				String syntax = "N-TRIPLE"; //"N-TRIPLE" and "TURTLE"
+				StringWriter out = new StringWriter();
+				m.write(out, syntax,curi.getUri().toString());
+				String result = out.toString();
+				result = replaceBaseUri(result,curi.getUri().toString(),data.getPath());
+				sink.addData(curi, result);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 		}	
+	
+	private String replaceBaseUri(String result,String base,String oldbase) {
+		oldbase = "file:///"+oldbase.replace("\\", "/");
+		oldbase = oldbase.substring(0, oldbase.lastIndexOf("/"));
+		base = base.substring(0, base.lastIndexOf("/"));
+		result = result.replace(oldbase, base);
+		//System.out.println(result);
+		//System.out.println(base);
+		//System.out.println(oldbase);
+		return result;
+	}
+	
 }
