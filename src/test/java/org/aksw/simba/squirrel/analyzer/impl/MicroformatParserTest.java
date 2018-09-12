@@ -298,17 +298,6 @@ public class MicroformatParserTest extends RDFParserTest {
 
 	}
 	
-	private static String fileToString(File file) throws FileNotFoundException, IOException {
-		String data = "";
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-		    String line;
-		    while ((line = br.readLine()) != null) {
-		       data+= line+"\n";
-		    }
-		}	
-		return data;
-	}
-	
 	public static String addContextToJSON(String data) {
 		data = data.substring(1);
 		data = "{\r\n" + 
