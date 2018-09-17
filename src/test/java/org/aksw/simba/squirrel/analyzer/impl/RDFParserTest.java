@@ -42,7 +42,7 @@ public abstract class RDFParserTest {
 	protected static double sumdoublearray(double[] array) {
 		double sum = 0;
 		for (double element : array) {
-	        sum += element;
+				if(!Double.isNaN(element))sum += element;
 	    }
 		return sum;
 	}

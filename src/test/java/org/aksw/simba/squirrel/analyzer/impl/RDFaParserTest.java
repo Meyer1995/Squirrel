@@ -28,6 +28,7 @@ import org.aksw.simba.squirrel.analyzer.Analyzer;
 
 import org.aksw.simba.squirrel.data.uri.CrawleableUri;
 import org.aksw.simba.squirrel.sink.impl.mem.InMemorySink;
+import org.apache.commons.beanutils.locale.converters.DoubleLocaleConverter;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -1004,6 +1005,7 @@ public class RDFaParserTest extends RDFParserTest {
 		analyzer = new JavaRDFaParser();
 		
 		String strindex = test.getMethodName();
+		System.out.println(strindex);
 //		strindex = strindex.substring(11, strindex.indexOf(","));
 //		int index = Integer.parseInt(strindex);		
 		//curi = new CrawleableUri(new URI("rdfaParserTest"));
