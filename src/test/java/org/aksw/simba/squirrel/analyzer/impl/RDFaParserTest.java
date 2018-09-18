@@ -1113,7 +1113,7 @@ public class RDFaParserTest extends RDFParserTest {
 			fnsum+=fn;
 			if((tp+fp) != 0)p[index] = tp/(tp+fp);
 			else p[index] = 0;
-			if((tp+fp) != 0)r[index] = tp/(tp+fn);
+			if((tp+fn) != 0)r[index] = tp/(tp+fn);
 			else r[index] = 0;
 			index++;
 		}
