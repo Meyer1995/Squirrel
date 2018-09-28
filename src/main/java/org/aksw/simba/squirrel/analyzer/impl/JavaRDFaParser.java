@@ -50,7 +50,6 @@ public class JavaRDFaParser implements Analyzer {
 	        //statesink.setBase(curi.getUri().toString());
 	        XMLReader parser = ParserFactory.createReaderForFormat(statesink, Format.XHTML, Setting.OnePointOne);
 	        //parser.setProperty(JAXPConstants.JAXP_SCHEMA_SOURCE, curi.getUri().toString());
-	        try {
 				parser.parse(data.getAbsolutePath());
 				String syntax = "N-TRIPLE"; //"N-TRIPLE" and "TURTLE"
 				StringWriter out = new StringWriter();
@@ -59,11 +58,7 @@ public class JavaRDFaParser implements Analyzer {
 				result = replaceBaseUri(result,curi.getUri().toString(),data.getPath());
 //				result = addVocabulary(result);
 				sink.addData(curi, result);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (SAXException e) {
+		} catch (SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
