@@ -56,7 +56,7 @@ public class JavaRDFaParser implements Analyzer {
 				m.write(out, syntax,curi.getUri().toString());
 				String result = out.toString();
 				result = replaceBaseUri(result,curi.getUri().toString(),data.getPath());
-//				result = addVocabulary(result);
+				result = addVocabulary(result);
 				sink.addData(curi, result);
 		} catch (SAXException | IOException e) {
 			// TODO Auto-generated catch block
@@ -65,25 +65,25 @@ public class JavaRDFaParser implements Analyzer {
 		return null;
 		}	
 	
-//	private String addVocabulary(String text) {
-//		text = text.replace("rdf:", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-//		text = text.replace("xsd:", "http://www.w3.org/2001/XMLSchema#");
-//		text = text.replace("xhv:", "http://www.w3.org/1999/xhtml/vocab#");
-//		text = text.replace("foaf:", "http://xmlns.com/foaf/0.1/");
-//		text = text.replace("owl:", "http://www.w3.org/2002/07/owl#");
-//		text = text.replace("earl:", "http://www.w3.org/ns/earl#");
-//		text = text.replace("dc11:", "http://purl.org/dc/elements/1.1/");
-//		text = text.replace("cal:", "http://www.w3.org/2002/12/cal/icaltzd#");
-//		text = text.replace("dcterms:", "http://purl.org/dc/terms/");
-//		text = text.replace("ex:", "http://example.org/rdf/");
-//		text = text.replace("vcard:", "http://www.w3.org/2006/vcard/ns#");
-//		text = text.replace("rdfa:", "http://www.w3.org/ns/rdfa#");
-//		text = text.replace("xpr:", "http://rdfa.info/test-suite/test-cases/rdfa1.1/xml/relative/uri#");
-//		text = text.replace("pr:", "http://rdfa.info/test-suite/test-cases/rdfa1.1/xml/relative/iri#");
-//		text = text.replace("schema:", "http://schema.org/");
-//		text = text.replace("cc:", "http://creativecommons.org/ns#");
-//		return text;
-//	}
+	private String addVocabulary(String text) {
+		text = text.replace("rdf:", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+		text = text.replace("xsd:", "http://www.w3.org/2001/XMLSchema#");
+		text = text.replace("xhv:", "http://www.w3.org/1999/xhtml/vocab#");
+		text = text.replace("foaf:", "http://xmlns.com/foaf/0.1/");
+		text = text.replace("owl:", "http://www.w3.org/2002/07/owl#");
+		text = text.replace("earl:", "http://www.w3.org/ns/earl#");
+		text = text.replace("dc11:", "http://purl.org/dc/elements/1.1/");
+		text = text.replace("cal:", "http://www.w3.org/2002/12/cal/icaltzd#");
+		text = text.replace("dcterms:", "http://purl.org/dc/terms/");
+		text = text.replace("ex:", "http://example.org/rdf/");
+		text = text.replace("vcard:", "http://www.w3.org/2006/vcard/ns#");
+		text = text.replace("rdfa:", "http://www.w3.org/ns/rdfa#");
+		text = text.replace("xpr:", "http://rdfa.info/test-suite/test-cases/rdfa1.1/xml/relative/uri#");
+		text = text.replace("pr:", "http://rdfa.info/test-suite/test-cases/rdfa1.1/xml/relative/iri#");
+		text = text.replace("schema:", "http://schema.org/");
+		text = text.replace("cc:", "http://creativecommons.org/ns#");
+		return text;
+	}
 	
 	private String replaceBaseUri(String result,String base,String oldbase) {
 		oldbase = "file:///"+oldbase.replace("\\", "/");
