@@ -455,6 +455,7 @@ public class RDFaParserTest extends RDFParserTest {
         	{ pathextensionsuit+pathextensionhtml5invalid+"0234.html",pathextensionsuit+pathextensionhtml5invalid+"0234.ttl" },
         	{ pathextensionsuit+pathextensionhtml5invalid+"0258.html",pathextensionsuit+pathextensionhtml5invalid+"0258.ttl" },
         	{ pathextensionsuit+pathextensionhtml5invalid+"0280.html",pathextensionsuit+pathextensionhtml5invalid+"0280.ttl" },
+        	{ pathextensionsuit+pathextensionhtml5invalid+"0285.html",pathextensionsuit+pathextensionhtml5invalid+"0285.ttl" },
         	{ pathextensionsuit+pathextensionhtml5invalid+"0295.html",pathextensionsuit+pathextensionhtml5invalid+"0295.ttl" },
         	{ pathextensionsuit+pathextensionhtml5invalid+"0303.html",pathextensionsuit+pathextensionhtml5invalid+"0303.ttl" },
         	{ pathextensionsuit+pathextensionhtml5invalid+"0319.html",pathextensionsuit+pathextensionhtml5invalid+"0319.ttl" },
@@ -1022,7 +1023,7 @@ public class RDFaParserTest extends RDFParserTest {
 		curi = new CrawleableUri(new URI(pathcontext));
 		
 		analyzer.analyze(curi, test, sink);
-		System.out.print("Analyze ok ");
+		//System.out.print("Analyze ok ");
 		
 		List<byte[]> tdp = sink.getCrawledUnstructuredData().get(pathcontext);
 		String decodedtest = "";
@@ -1030,7 +1031,7 @@ public class RDFaParserTest extends RDFParserTest {
 		//if(!decodedtest.equals(""))decodedtest = decodedtest.substring(0, decodedtest.length()-1);
 		
 		Model decodedmodel = createModelFromN3Strings(decodedtest);
-		System.out.print("created decodemodel ");
+		//System.out.print("created decodemodel ");
 		
 		//System.out.println(decodedtest);
 		//System.out.println();
@@ -1050,7 +1051,7 @@ public class RDFaParserTest extends RDFParserTest {
 //			falsenegativ[index]++;
 			fn++;
 		}
-		System.out.println();
+		//System.out.println();
 		Set<Statement> morestatements = getMissingStatements(decodedmodel, correctmodel);
 		for (Statement statement : morestatements) {
 //			falsepositiv[index]++;
@@ -1062,7 +1063,7 @@ public class RDFaParserTest extends RDFParserTest {
 		results.add(fp);
 		results.add(fn);			
 		testresults.put(strindex,results);		
-		System.out.println();
+		//System.out.println();
 		
 		//String filepath = getFilePath(decodedtest);
 		//String path = getpath(filepath);
