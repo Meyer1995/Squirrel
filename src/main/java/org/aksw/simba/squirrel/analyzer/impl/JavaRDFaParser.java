@@ -82,6 +82,8 @@ public class JavaRDFaParser implements Analyzer {
 		text = text.replace("pr:", "http://rdfa.info/test-suite/test-cases/rdfa1.1/xml/relative/iri#");
 		text = text.replace("schema:", "http://schema.org/");
 		text = text.replace("cc:", "http://creativecommons.org/ns#");
+		text = text.replace("dc:", "http://purl.org/dc/terms/");
+		text = text.replace("rdfs:", "http://www.w3.org/2000/01/rdf-schema#");
 		return text;
 	}
 	
