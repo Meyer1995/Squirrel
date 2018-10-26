@@ -73,7 +73,7 @@ public class JavaRDFaParser implements Analyzer {
 		text = text.replace("owl:", "http://www.w3.org/2002/07/owl#");
 		text = text.replace("earl:", "http://www.w3.org/ns/earl#");
 		text = text.replace("dc11:", "http://purl.org/dc/elements/1.1/");
-		text = text.replace("cal:", "http://www.w3.org/2002/12/cal/icaltzd#");
+		text = text.replace("ical:", "http://www.w3.org/2002/12/cal/icaltzd#");
 		text = text.replace("dcterms:", "http://purl.org/dc/terms/");
 		text = text.replace("ex:", "http://example.org/rdf/");
 		text = text.replace("vcard:", "http://www.w3.org/2006/vcard/ns#");
